@@ -78,6 +78,17 @@ namespace DAL.Contexts
                 .WithMany(p => p.Organizations)
                 .HasForeignKey(om => om.ManagerId);
 
+            builder.Entity<CMSRoleMember>()
+                .HasKey(rm => new { rm.AccountId, rm.RoleId});
+            builder.Entity<CMSRoleMember>()
+                .HasOne(rm => rm.PersonAccount)
+                .WithMany(o => o.CMSRoles)
+                .HasForeignKey(rm => rm.AccountId);
+            builder.Entity<CMSRoleMember>()
+                .HasOne(rm => rm.CMSRole)
+                .WithMany(r => r.Members)
+                .HasForeignKey(rm => rm.RoleId);
+
 
         }
     }

@@ -18,5 +18,7 @@ namespace DAL.Models
         public override byte AccountType => 1;
 
         public ICollection<ManagerList> Organizations { get; set; }
+
+        public ICollection<CMSRoleMember> CMSRoles {get;set;}
     }
 }
