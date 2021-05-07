@@ -11,7 +11,7 @@ namespace DAL.Contexts
         { }
 
         public DbSet<PersonAccount> PersonAccounts { get; set; }
-        public DbSet<JuristicAccount> JuristicAccounts { get; set; }
+        public DbSet<MerchantAccount> MerchantAccounts { get; set; }
         public DbSet<ContactAddress> ContactAddresses { get; set; }
         public DbSet<ContactPhone> ContactPhones { get; set; }
         public DbSet<ContactEmail> ContactEmails { get; set; }
@@ -36,7 +36,7 @@ namespace DAL.Contexts
                 .HasForeignKey(p => new { p.OwnerID, p.OwnerType })
                 .HasPrincipalKey(p => new { p.Id, p.AccountType });
 
-            builder.Entity<JuristicAccount>()
+            builder.Entity<MerchantAccount>()
                 .HasMany(s => s.Addresses)
                 .WithOne()
                 .HasForeignKey(p => new { p.OwnerID, p.OwnerType })
@@ -48,7 +48,7 @@ namespace DAL.Contexts
                 .HasForeignKey(p => new { p.OwnerID, p.OwnerType })
                 .HasPrincipalKey(p => new { p.Id, p.AccountType });
 
-            builder.Entity<JuristicAccount>()
+            builder.Entity<MerchantAccount>()
                 .HasMany(s => s.Emails)
                 .WithOne()
                 .HasForeignKey(p => new { p.OwnerID, p.OwnerType })
@@ -60,7 +60,7 @@ namespace DAL.Contexts
                 .HasForeignKey(p => new { p.OwnerID, p.OwnerType })
                 .HasPrincipalKey(p => new { p.Id, p.AccountType });
 
-            builder.Entity<JuristicAccount>()
+            builder.Entity<MerchantAccount>()
                 .HasMany(s => s.Phones)
                 .WithOne()
                 .HasForeignKey(p => new { p.OwnerID, p.OwnerType })
@@ -69,26 +69,12 @@ namespace DAL.Contexts
 
             builder.Entity<ManagerList>()
                 .HasKey(om => new { om.OrganizationId, om.ManagerId });
-            builder.Entity<ManagerList>()
-                .HasOne(om => om.Organization)
-                .WithMany(o => o.Managers)
-                .HasForeignKey(om => om.OrganizationId);
-            builder.Entity<ManagerList>()
-                .HasOne(om => om.Manager)
-                .WithMany(p => p.Organizations)
-                .HasForeignKey(om => om.ManagerId);
 
             builder.Entity<CMSRoleMember>()
                 .HasKey(rm => new { rm.AccountId, rm.RoleId});
-            builder.Entity<CMSRoleMember>()
-                .HasOne(rm => rm.PersonAccount)
-                .WithMany(o => o.CMSRoles)
-                .HasForeignKey(rm => rm.AccountId);
-            builder.Entity<CMSRoleMember>()
-                .HasOne(rm => rm.CMSRole)
-                .WithMany(r => r.Members)
-                .HasForeignKey(rm => rm.RoleId);
 
+            builder.Entity<CMSPermission>()
+                .HasKey(p => new { p.FunctionId, p.BelongToId, p.IdentityType });
 
         }
     }

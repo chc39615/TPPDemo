@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace DAL.Models
 {
@@ -11,6 +10,5 @@ namespace DAL.Models
         public DateTime CreateDate {get;set;}
         public int CreateBy {get;set;}
 
-        public ICollection<CMSRoleMember> Members {get;set;}
     }
 }

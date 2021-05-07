@@ -1,9 +1,8 @@
 using DAL.Models.BaseModels;
-using System.Collections.Generic;
 
 namespace DAL.Models
 {
-    public class JuristicAccount : AccountBase
+    public class MerchantAccount : AccountBase
     {
         public string RegisterNameE { get; set; }
         public string RegisterNameC { get; set; }
@@ -17,9 +16,11 @@ namespace DAL.Models
         public string ProxyIDNumber { get; set; }
         public string ProxyNation { get; set; }
 
+        /// <summary>
+        /// 個人商家/一般商家
+        /// </summary>
+        public byte MerchantAccountType { get; set; }
         public override byte AccountType => 2;
-
-        public ICollection<ManagerList> Managers { get; set; }
 
     }
 }
