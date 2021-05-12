@@ -4,6 +4,8 @@ namespace DAL.Models
     {
         public int FunctionId { get; set; }
 
+        public CMSFunction CMSFunction {get;set;}
+
         public int BelongToId { get; set; }
 
         /// <summary>

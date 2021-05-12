@@ -1,13 +1,21 @@
+using DAL.Models.BaseModels;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DAL.Models
 {
-    public class CMSFunction
+    public class CMSFunction : StatefulBase
     {
-        public int Id { get; set; }
-        public string Entry { get; set; }
-        public byte MethodType { get; set; }
+        public int ParentFunctionId { get; set; }
+
+        [MaxLength(30)]
         public string FunctionName { get; set; }
-        public byte FunctionType { get; set; }
-        public int ParentId { get; set; }
+
+        [Column(TypeName = "varchar(200)")]
+        public string ControllerName { get; set; }
+
+        [Column(TypeName = "varchar(200)")]
+        public string ActionName { get; set; }
     }
 
 }

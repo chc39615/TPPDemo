@@ -1,14 +1,15 @@
-using System;
+using DAL.Models.BaseModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Models
 {
-    public class CMSRole
+    public class CMSRole : StatefulBase
     {
-        public int Id {get;set;}
+        [MaxLength(30)]
         public string RoleName {get;set;}
+
+        [MaxLength(200)]
         public string Description {get;set;}
-        public DateTime CreateDate {get;set;}
-        public int CreateBy {get;set;}
 
     }
 }

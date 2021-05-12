@@ -19,7 +19,7 @@ namespace DAL.Models.BaseModels
 
         public DateTime? UpdateDate { get; set; }
 
-        public int UpdateBy { get; set; }
+        public int? UpdateBy { get; set; }
 
         public byte Status { get; set; }
 
